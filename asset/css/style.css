@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+}
+
+header {
+  text-align: center;
+}
+
+header>h1 {
+  display: inline-block;
+  margin: 0;
+  padding: 10px 20px;
+  background-color: aliceblue;
+  border-radius: 20px;
+}
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+}
+
+footer>small {
+  display: inline-block;
+  font-size: 16px;
+  margin: 0;
+  padding: 10px 20px;
+  background-color: aliceblue;
+  border-radius: 20px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+#calculator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 15px;
+  margin: 20px;
+  padding: 10px;
+  background-color: goldenrod;
+}
+
+#screen {
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px 20px;
+  width: 300px;
+  background-color: whitesmoke;
+}
+
+#result {
+  text-align: end;
+}
+
+#expression, #result {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+#button-container {
+  display: grid;
+  grid-template-columns: repeat(4, 75px);
+  grid-template-rows: repeat(4, 75px);
+}
+
+.btn {
+  background-color: white;
+  margin: 3px;
+  border-radius: 8px;
+  font-size: 25px;
+}
+
+.btn-operator {
+  background-color: darkblue;
+  color: white;
+}
+
+.btn-clear {
+  background-color: red;
+  color: white;
+}
+
+.btn-enter {
+  background-color: gold;
+}
+
+#guide-container {
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+#guide>p {
+  font-size: 16px;
+}
