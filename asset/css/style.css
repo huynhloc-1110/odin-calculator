@@ -62,6 +62,7 @@ main {
   margin: 10px;
   padding: 10px 20px;
   width: 300px;
+  height: 70px;
   background-color: whitesmoke;
   box-shadow: 0 3px rgb(105, 105, 105);
 }
@@ -96,18 +97,15 @@ main {
   filter: brightness(75%);
 }
 
-.btn:active {
+.btn.active {
+  filter: brightness(75%);
   box-shadow: none;
   transform: translateY(3px);
 }
 
 .btn-operator {
-  background-color: darkblue;
+  background-color: rgb(0, 0, 255);
   color: white;
-}
-
-.btn-operator:hover {
-  filter: brightness(200%);
 }
 
 .btn-clear {
