@@ -55,21 +55,24 @@ main {
 }
 
 #screen {
+  display: flex;
+  justify-content: space-between;
   border: 2px solid black;
   border-radius: 10px;
   margin: 10px;
   padding: 10px 20px;
   width: 300px;
   background-color: whitesmoke;
+  box-shadow: 0 3px rgb(105, 105, 105);
 }
 
 #result {
   text-align: end;
 }
 
-#expression, #result {
+#operator, #result {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 30px;
+  font-size: 40px;
   margin: 0;
   padding: 0;
 }
@@ -85,11 +88,26 @@ main {
   margin: 3px;
   border-radius: 8px;
   font-size: 25px;
+  cursor: pointer;
+  box-shadow: 0 3px rgb(105, 105, 105);
+}
+
+.btn:hover {
+  filter: brightness(75%);
+}
+
+.btn:active {
+  box-shadow: none;
+  transform: translateY(3px);
 }
 
 .btn-operator {
   background-color: darkblue;
   color: white;
+}
+
+.btn-operator:hover {
+  filter: brightness(200%);
 }
 
 .btn-clear {
