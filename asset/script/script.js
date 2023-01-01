@@ -36,12 +36,16 @@ function handlingInput(input) {
     case'0': case'1': case'2': case'3': case'4':
     case'5':case'6': case'7': case'8': case'9':
     {
+      // when joining the new char input to the current
       if (calculator.isInputtingNumber) {
         if (calculator.current.length < 10) {
           calculator.current += input;
         }
         return;
       }
+
+      // when entering a new number after entering operator
+      // or just first start the app
       calculator.prev = calculator.current;
       calculator.current = input;
       calculator.isInputtingNumber = true;
@@ -49,15 +53,22 @@ function handlingInput(input) {
     }
     case'+':case'-':case'*':case'/':case'=':
     {
-      calculator.isInputtingNumber = false;
+      // if the previous operator is +,-,* or /
+      // do the math and store it in the current
       if (calculator.prev != null && calculator.operator != null
         && calculator.operator != '=') {
         calculator.calc();
       }
+
+      // if the previous operator is =, set prev = null
+      // so that if user press + 2 times, it will do the math
+      // which is not the expectation
       if (calculator.operator == '=') {
         calculator.prev = null;
       }
+
       calculator.operator = input;
+      calculator.isInputtingNumber = false;
       return;
     }
     case'C':
