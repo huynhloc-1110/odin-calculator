@@ -93,12 +93,39 @@ document.addEventListener('keyup', fireMouseUp);
 updateScreen();
 
 function updateScreen() {
-  if (calculator.current != null) {
-    txtResult.textContent = calculator.current.toString().slice(0, 10);
-  } else {
-    txtResult.textContent = '';
-  }
+  txtResult.textContent = handleOutput(calculator.current);
   txtOperator.textContent = calculator.operator;
+}
+
+function handleOutput(output) {
+  if (output == null) {
+    return '';
+  }
+  // for number with integer part too large
+  if (output >= 1e10 || output <= -1e9) {
+    let e = 0;
+    while (output >= 10 || output <= -10) {
+      output/=10;
+      e++;
+    }
+    let integerPart = Math.floor(output);
+    return `${integerPart}e+${e}`;
+  }
+
+  // number in [-1e-7, 1e-7] will automatically be written in
+  // scientific notation, so we need to control it
+  if (output <= 1e-7 && output >= -1e-7) {
+    let e = 0;
+    while (output < 1 && output > -1) {
+      output*=10;
+      e--;
+    }
+    let integerPart = Math.floor(output);
+    return `${integerPart}e${e}`;
+  }
+
+  // normal situation
+  return output.toString().slice(0, 10);
 }
 
 function onActive(e) {
