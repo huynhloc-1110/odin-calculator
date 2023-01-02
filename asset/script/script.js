@@ -31,42 +31,41 @@ function operate(operator, x, y) {
   }
 }
 
-function handlingInput(input) {
+function joinNumber(input) {
+  if (calculator.current.length < 10) {
+    calculator.current += input;
+  }
+};
+
+function handlePreviousOperation() {
+  if (calculator.prev != null && calculator.operator != null
+    && calculator.operator != '=') {
+    calculator.calc();
+  }
+}
+
+function handleInput(input) {
   switch (input) {
     case'0': case'1': case'2': case'3': case'4':
     case'5':case'6': case'7': case'8': case'9':
     {
-      // when joining the new char input to the current
       if (calculator.isInputtingNumber) {
-        if (calculator.current.length < 10) {
-          calculator.current += input;
-        }
-        return;
+        joinNumber(input);
       }
-
-      // when entering a new number after entering operator
-      // or just first start the app
-      calculator.prev = calculator.current;
-      calculator.current = input;
-      calculator.isInputtingNumber = true;
+      else {
+        // put current in prev and update current
+        calculator.prev = calculator.current;
+        calculator.current = input;
+        calculator.isInputtingNumber = true;
+      }
       return;
     }
     case'+':case'-':case'*':case'/':case'=':
     {
-      // if the previous operator is +,-,* or /
-      // do the math and store it in the current
-      if (calculator.prev != null && calculator.operator != null
-        && calculator.operator != '=') {
-        calculator.calc();
-      }
-
-      // if the previous operator is =, set prev = null
-      // so that if user press + 2 times, it will do the math
-      // which is not the expectation
-      if (calculator.operator == '=') {
-        calculator.prev = null;
-      }
-
+      handlePreviousOperation();
+      // empty prev
+      calculator.prev = null;
+      // set new operator
       calculator.operator = input;
       calculator.isInputtingNumber = false;
       return;
@@ -104,7 +103,7 @@ function updateScreen() {
 
 function onActive(e) {
   this.classList.add('active');
-  handlingInput(this.textContent);
+  handleInput(this.textContent);
   updateScreen();
 }
 
