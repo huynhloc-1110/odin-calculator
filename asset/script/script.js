@@ -101,6 +101,11 @@ function handleOutput(output) {
   if (output == null) {
     return '';
   }
+
+  if (output == Infinity || output == NaN) {
+    return output.toString();
+  }
+
   // for number with integer part too large
   if (output >= 1e10 || output <= -1e9) {
     let e = 0;
@@ -114,7 +119,7 @@ function handleOutput(output) {
 
   // number in [-1e-7, 1e-7] will automatically be written in
   // scientific notation, so we need to control it
-  if (output <= 1e-7 && output >= -1e-7) {
+  if (output <= 1e-7 && output >= -1e-7 && output != 0) {
     let e = 0;
     while (output < 1 && output > -1) {
       output*=10;
